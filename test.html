@@ -47,10 +47,10 @@
 		console.log(Number.isInteger(123));
 		console.log("String 1 " + "String 2"); //String mit + = String Concatenation
 		testArray.forEach(element => console.log("for each in testArray: " + element)); //Iterator Methode fuer Arrays, geht jedes Element durch
-		const neuestestArray = testArray.map(element => {return "neues " + element}); //geht wie forEach jedes Element durch und erstellt ein neues Array
+		const neuestestArray = testArray.map(element => {return "neues " + element}); //geht wie forEach jedes Element durch und erstellt ein neues Array, mit testArray.map((row, index, objekt) => {} koennen mehr Informationen rausgeholt werden
 		const neuestestArray2 = testArray.filter(element => {return !element.includes("1")}); //wie map() nur dass man bestimmte Werte rausfiltern kann
 		const neuestestArray3 = testArray.findIndex(element => {return element.charAt(0)==="t"}); //findet das erste element in einem array dass einer bedingung entspricht, wenn nichts gefunden ist die ausgabe -1
-		const neuestestArray4 = nestedObjectArray.find(x => x.color === "green"); console.log(neuestestArray4); //findet nach wunsch..
+		const neuestestArray4 = nestedObjectArray.find(x => x.color === "green"); console.log(neuestestArray4); //findet nach Objekte Werte in Arrays
 		delete testObject._color; //Propertys von Objekten entfernen
 		testObject.Type = "BMW"; //eigenen Object Setter verwenden
 		console.log(testObject.Type); //eigenen Object Getter verwenden
@@ -59,7 +59,6 @@
 		const lastLetterOfString = "String"["String".length - 1]; //sollte "g" sein
 		const onlyValues = Object.values(testObject);
 		const objectToArray = Object.entries(testObject);
-
 		
 
 	/* ----- Statements, Loops, Arrays ----- */
@@ -79,7 +78,10 @@
 		const nco = undefined ?? "Default"; //Nullish Coalescing Operator, wenn der Wert links von den ?? undefined oder null ist wird die Default Value von rechts verwendet
 		const lncafunc = (var1, var2) => {var2 ??= "default value"; return var1 + var2;}; console.log(lncafunc("leer ",)); //Logical nullish assignment, default value setzen
 		let sce = "" || "Default"; //Short-Circuit Evaluation, wenn der Wert links von || undefined, null, "" oder 0 ist wird der Default Value von rechts verwendet
+		let test = null || undefined || "Value" //Short-Circuit Evaluation als Kaskade;
+		console.log("kaskade: " + test)
 		for (let i of testArray) {console.log("Kurzschreibweise for mit of: " + i)}; for (let i in testArray) {console.log("Kurzschreibweise for mit in: " + i)};
+
 
 
 	/* ----- Funktionen ---- */
@@ -172,7 +174,7 @@
 		Ausgabe: wie Class Komponente
 		Hooks:
 			- import {useState} from 'react'; const [currentValue, SetNewValue] = useState(["id":x]); //damit kann man dynamisch einer Variablen einen Wert zuweisen
-				- SetNewValue((prev) => ({...prev, id: Date.now()})); //damit ändert man das currentVlaue auf den Value von vorher + das aktuelle Datum als ID
+				- SetNewValue((prev) => ({...prev, id: Date.now()})); //damit ändert man das currentValue auf den Value von vorher + das aktuelle Datum als ID
 			- import {useEffect} from 'react'; const //useEffect wird bei jedem Render ausgeführt = wenn komponente hinzugefügt wird, wenn sich state/props ändern, wenn die komponente entfernt wird
 				- useEffect(() => {document.title = `${name} Uebungsplatz`},[name]); //immer wenn sich beim State name was ändert wird der Effekt ausgeführt
 				- useEffect(() => {alert("component rendered for the first time");return () => {alert("component is being removed from the DOM");};}, []); //Leeres Dependency Array als 2. Argument übergeben, damit Effekt nur beim ersten Render ausgeführt wird
@@ -209,7 +211,23 @@
 		var args = [0, 1, 2];
 		var args2 = [3, 4, 5];
 		console.log(myFunction(...args));
-		document.write(Date());
+		//document.write(Date());
+
+		testDaten = [{"code": "DEMOORACLE","isDefault": false},{"code": "DEV","isDefault": true},{"code": "AIL","isDefault": false},{"code": "PSLEASING","isDefault": false},{"code": "XLEASING","isDefault": false},{"code": "SKE","isDefault": false},{"code": "GSLEASE","isDefault": false},{"code": "MASTER","isDefault": false},{"code": "BRODSCHRANGEN","isDefault": false}];
+		testDaten2 = [{"id": "name","title": "Name","type": "string","editable": false,"format": null,"searchable": true},{"id": "vorname","title": "Vorname","type": "string","editable": false,"format": null,"searchable": true},{"id": "zusatz","title": "Zusatz","type": "string","editable": false,"format": null,"searchable": true},{"id": "geburtsdatum","title": "Geburtsdatum","type": "date","editable": false,"format": null,"searchable": true},{"id": "rechtsform","title": "Rechtsform","type": "string","editable": false,"format": null,"searchable": true},{"id": "status","title": "Status","type": "string","editable": true,"format": null,"searchable": true}]
+
+
+		//const neuestestArray4 = nestedObjectArray.find(x => x.color === "green"); console.log(neuestestArray4);
+		console.log("++++++++++++++++++")
+		console.log(Boolean(testDaten.find(domain => domain.isDefault === true)) ? testDaten.find(domain => domain.isDefault === true).code : "");
+		console.log(testDaten2);
+
+		const testDaten2map = testDaten2.map((a, b, c, d) => {
+			console.log("a : ");console.log(a); //row
+			console.log("b : ");console.log(b); //index
+			console.log("c : ");console.log(c); //object
+			console.log("d : ");console.log(d); //undefined
+		});
 
 
 	</script>
